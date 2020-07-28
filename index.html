@@ -5,18 +5,24 @@
   <meta charset="utf-8">
 
   <title>Conways Game of Life</title>
-  <meta name="author" content="mobo">
-  <link rel="stylesheet" href="style.css">
+  <meta name="author" content="Matthias Barde">
 </head>
 
 <body>
-  <canvas id="myCanvas" width="500" height="500">
+  <canvas id="myCanvas" width="600" height="600">
   Your browser does not support the canvas element.
   </canvas>
-
+  <br/>
   <button id="btn-play">play/pause</button>
-  <button id="btn-spawn">spawn</button>
+  <label>interval:</label>
   <input id="interval" type="number" value="100"/>
+  <button id="btn-spawn">spawn glider</button>
+  <hr/>
+  <label>life probability:</label>
+  <input id="probability" type="number" value="10" min="0" max="100"/>
+  <label>grid size:</label>
+  <input id="size" type="number" value="64"/>
+  <button id="btn-repopulate">repopulate</button>
 
   <script src="main.js"></script>
 </body>

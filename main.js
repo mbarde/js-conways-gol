@@ -1,6 +1,7 @@
 class Grid {
-  constructor(size, context) {
+  constructor(size, lifeProbability, context) {
     this.size = size
+    this.lifeProbability = lifeProbability
     this.context = context
     this.cellSize = Math.floor(context.canvas.width / this.size)
     this.initialize()
@@ -11,7 +12,7 @@ class Grid {
     for (let x = 0; x < this.size; x++) {
       let column = []
       for (let y = 0; y < this.size; y++) {
-        if (Math.random() < 0.1) {
+        if (Math.random() <= this.lifeProbability) {
           column.push(true)
         } else {
           column.push(false)
@@ -87,8 +88,8 @@ class Grid {
   }
 
   spawnGlider() {
-    let x = Math.round(Math.random() * (this.size-2)) + 1
-    let y = Math.round(Math.random() * (this.size-2)) + 1
+    let x = Math.round(Math.random() * (this.size-3)) + 1
+    let y = Math.round(Math.random() * (this.size-3)) + 1
     this.cells[x][y] = true
     this.cells[x-1][y] = true
     this.cells[x][y+1] = true
@@ -100,9 +101,10 @@ class Grid {
 let canvas = document.getElementById('myCanvas')
 let ctx = canvas.getContext('2d')
 
-grid = new Grid(64, ctx)
+let gridSize = document.getElementById('size').value
+let lifeProb = document.getElementById('probability').value / 100
+grid = new Grid(gridSize, lifeProb, ctx)
 grid.draw()
-grid.spawnGlider()
 
 function update() {
   grid.next()
@@ -124,4 +126,13 @@ btnPlay.onclick = function() {
 let btnSpawn = document.getElementById('btn-spawn')
 btnSpawn.onclick = function() {
   grid.spawnGlider()
+  grid.draw()
+}
+
+let btnRepopulate = document.getElementById('btn-repopulate')
+btnRepopulate.onclick = function() {
+  let gridSize = document.getElementById('size').value
+  let lifeProb = document.getElementById('probability').value / 100
+  grid = new Grid(gridSize, lifeProb, ctx)
+  grid.draw()
 }
