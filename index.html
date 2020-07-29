@@ -1,19 +1,18 @@
 <!doctype html>
-
 <html lang="en">
 <head>
   <meta charset="utf-8">
-
   <title>Conways Game of Life</title>
   <meta name="author" content="Matthias Barde">
 </head>
 
 <body>
-  <canvas id="myCanvas" width="600" height="600">
-  Your browser does not support the canvas element.
+  <canvas id="myCanvas" width="600" height="600"
+          style="border: 1px solid black; cursor: pointer;">
+    Your browser does not support the canvas element.
   </canvas>
   <br/>
-  <button id="btn-play">play/pause</button>
+  <button id="btn-play">play</button>
   <label>interval:</label>
   <input id="interval" type="number" value="100"/>
   <button id="btn-spawn">spawn glider</button>
@@ -27,4 +26,5 @@
   <script src="grid.js"></script>
   <script src="main.js"></script>
 </body>
+
 </html>

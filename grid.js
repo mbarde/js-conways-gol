@@ -5,7 +5,7 @@ class Grid {
     this.size = size
     this.lifeProbability = lifeProbability
     this.context = context
-    this.cellSize = Math.floor(context.canvas.width / this.size)
+    this.cellSize = Math.round(context.canvas.width / this.size)
     this.initialize()
   }
 
@@ -98,5 +98,16 @@ class Grid {
     this.cells[x][y+1] = true
     this.cells[x+1][y+1] = true
     this.cells[x+1][y-1] = true
+  }
+
+  onClick(x, y) {
+    let cellX = Math.floor(x / this.cellSize)
+    let cellY = Math.floor(y / this.cellSize)
+    if (cellX < 0) cellX = 0
+    if (cellY < 0) cellY = 0
+    if (cellX > this.size-1) cellX = this.size - 1
+    if (cellY > this.size-1) cellY = this.size - 1
+    this.cells[cellX][cellY] = !this.cells[cellX][cellY]
+    this.draw()
   }
 }
