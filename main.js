@@ -1,16 +1,19 @@
-let canvas = document.getElementById('myCanvas')
-let ctx = canvas.getContext('2d')
-
-let gridSize = document.getElementById('size').value
-let lifeProb = document.getElementById('probability').value / 100
-grid = new Grid(gridSize, lifeProb, ctx)
-grid.draw()
+function populateGrid() {
+  let gridSize = document.getElementById('size').value
+  let lifeProb = document.getElementById('probability').value / 100
+  grid = new Grid(gridSize, lifeProb, ctx, '#FFF', '#000')
+  grid.draw()
+}
 
 function update() {
   grid.next()
   grid.draw()
 }
 
+let canvas = document.getElementById('myCanvas')
+let ctx = canvas.getContext('2d')
+
+let grid = null
 let interval = null
 
 let btnPlay = document.getElementById('btn-play')
@@ -31,8 +34,7 @@ btnSpawn.onclick = function() {
 
 let btnRepopulate = document.getElementById('btn-repopulate')
 btnRepopulate.onclick = function() {
-  let gridSize = document.getElementById('size').value
-  let lifeProb = document.getElementById('probability').value / 100
-  grid = new Grid(gridSize, lifeProb, ctx)
-  grid.draw()
+  populateGrid()
 }
+
+populateGrid()

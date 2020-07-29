@@ -1,5 +1,7 @@
 class Grid {
-  constructor(size, lifeProbability, context) {
+  constructor(size, lifeProbability, context, bgClr, cellClr) {
+    this.bgClr = bgClr
+    this.cellClr = cellClr
     this.size = size
     this.lifeProbability = lifeProbability
     this.context = context
@@ -23,12 +25,12 @@ class Grid {
   }
 
   draw() {
-    this.context.fillStyle = '#FFF'
+    this.context.fillStyle = this.bgClr
     this.context.fillRect(
       0, 0,
       ctx.canvas.width, ctx.canvas.height
     )
-    this.context.fillStyle = '#000'
+    this.context.fillStyle = this.cellClr
     for (let x = 0; x < this.size; x++) {
       for (let y = 0; y < this.size; y++) {
         if (this.cells[x][y] === true) {
