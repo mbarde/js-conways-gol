@@ -75,14 +75,14 @@ class Grid {
     for (let x = 0; x < this.size; x++) {
       for (let y = 0; y < this.size; y++) {
         // Conways rules:
-        // Any live cell with two or three live neighbours survives.
-        // All other live cells die in the next generation.
-        // Similarly, all other dead cells stay dead.
         let ns = this.neighbours(x, y)
         if (this.cells[x][y] === true) {
-          if (ns !== 2 && ns !== 3) nextGen[x][y] = false
+          // any live cell with fewer than two live neighbours dies
+          if (ns < 2) nextGen[x][y] = false
+          // any live cell with more than three live neighbours dies
+          if (ns > 3) nextGen[x][y] = false
         } else {
-          // Any dead cell with three live neighbours becomes a live cell.
+          // any dead cell with exactly three live neighbours becomes a live cell
           if (ns === 3) nextGen[x][y] = true
         }
       }
